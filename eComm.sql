@@ -5,13 +5,11 @@
 -- Date: 24-07-2024
 
 --  Tasks:
-/*
-	•	Visualize the Quantity of Orders between 2015 and 2018 in Switzerland per day.
-	•	Compute the daily Conversion-Rate between 2015 and 2018 in Switzerland. Visualize the daily Conversion-Rate. 
-	•	Decompose the Conversion- Rate and the Order Qty and show the Trend of both variables visually. 
-	•	a) What recommendations would you make to the Swiss marketing team?
-b) What recommendations would you make to the operational team of the Website?
-*/
+       -- Visualize the Quantity of Orders between 2015 and 2018 in Switzerland per day.
+       -- Compute the daily Conversion-Rate between 2015 and 2018 in Switzerland. Visualize the daily Conversion-Rate. 
+       -- Decompose the Conversion- Rate and the Order Qty and show the Trend of both variables visually. 
+       -- a) What recommendations would you make to the Swiss marketing team?
+       -- b) What recommendations would you make to the operational team of the Website?
 
 
 -- Report: 
@@ -36,11 +34,11 @@ FROM `eCom.orders`
 GROUP BY day;
 
 
--- Compute the daily Conversion-Rate between 2015 and 2018 in Switzerland. Visualize the daily Conversion-Rate. 
+-- Compute the daily conversion rate between 2015 and 2018 in Switzerland. Could you visualize the daily conversion rate? 
 
 WITH visits AS (-- Getting the total daily visits 
   SELECT 
-     PARSE_DATE('%d.%m.%Y', date) AS Date -- convert bigquery format
+     PARSE_DATE('%d.%m.%Y', date) AS Date -- convert date to bigquery format
       , SUM(Qty_Visits) AS Total_Qty_Visits
   FROM `eCom.visits` v
   GROUP BY Date
@@ -48,7 +46,7 @@ WITH visits AS (-- Getting the total daily visits
 
 , orders AS (-- Getting the total daily orders
   SELECT 
-    PARSE_DATE('%d.%m.%Y', date) AS Date -- convert bigquery format
+    PARSE_DATE('%d.%m.%Y', date) AS Date -- convert date to bigquery format
      , SUM(Qty_Orders) AS Total_Qty_Orders
   FROM `eCom.orders` o
   GROUP BY Date
